@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const webpack = require("webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     // entry:"./src/index.js",
@@ -10,16 +11,12 @@ module.exports = {
         appTs:"./src/index.ts"
         // print:"./src/print.js",
     },
+    mode:"production",
     output:{
         //filename:"bundle.js",
-        filename:"[name].bundle.js",
+        filename:"[name]_[chunkhash:8].js",
         path:path.resolve(__dirname,"dist"),
         // publicPath:"/"
-    },
-    devtool:"inline-source-map",
-    devServer:{
-        contentBase:"./dist",
-        hot:true
     },
     plugins:[
         // new CleanWebpackPlugin(),
@@ -27,7 +24,9 @@ module.exports = {
             title:"Output Management"
         }),
         new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        new MiniCssExtractPlugin({
+            filename:"[name]_[contenthash:8].css"
+        })
     ],
     resolve:{
         extensions:[".tsx",".ts",".js"]
@@ -37,20 +36,30 @@ module.exports = {
              {
                  test:/\.css$/,
                 use:[
-                    "style-loader",
+                    MiniCssExtractPlugin.loader,
                     "css-loader"
                 ]
             },
             {
                 test:/\.(png|jpg|svg|gif)$/,
                 use:[
-                    "file-loader"
+                    {
+                        loader:"file-loader",
+                        options:{
+                            name:'[name]_[hash:8][ext]'
+                        }
+                    }
                 ]
             },
             {
                 test:/\.(woff|woff2|eot|ttf|otf)$/,
                 use:[
-                    "file-loader"
+                    {
+                        loader:"file-loader",
+                        options:{
+                            name:'[name]_[hash:8][ext]'
+                        }
+                    }
                 ]
             },
             {
