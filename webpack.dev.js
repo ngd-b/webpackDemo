@@ -1,16 +1,56 @@
 const path = require("path");
+const glob = require("glob");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
 const webpack = require("webpack");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+const setMPA=()=>{
+    const entry = {};
+    const htmlWebpackPlugin = [];
+
+    const entryFiles = glob.sync(path.join(__dirname,"./src/*/index.js"));
+    Object.keys(entryFiles).map((index)=>{
+        const entryFile = entryFiles[index];
+
+        const pageName = entryFile.match(/src\/(.*)\/index\.js/);
+
+        const name = pageName&&pageName[1];
+
+        entry[name] = entryFile;
+        htmlWebpackPlugin.push(
+            new HtmlWebpackPlugin({
+                title:"webpack demo",
+                template:path.join(__dirname,`src/index.html`),
+                filename:`${name}.html`,
+                chunks:[name],
+                inject:true,
+                minify:{
+                    html5:true,
+                    collapseWhitespace:true,
+                    presserveLineBreaks:true,
+                    ninifyCSS:true,
+                    minifyJS:true,
+                    removeComments:false
+                }
+            })
+        );
+    });
+
+    return {
+        entry,
+        htmlWebpackPlugin
+    }
+}
+// 多页面打包
+const {entry,htmlWebpackPlugin} = setMPA();
 
 module.exports = {
     // entry:"./src/index.js",
-    entry:{
-        app:"./src/index.js",
-        appTs:"./src/index.ts"
-        // print:"./src/print.js",
-    },
+    // entry:{
+    //     app:"./src/index/index.js",
+    //     appTs:"./src/index/index.ts"
+    //     // print:"./src/print.js",
+    // },
+    entry:entry,
     mode:"development",
     output:{
         //filename:"bundle.js",
@@ -25,12 +65,9 @@ module.exports = {
     },
     plugins:[
         // new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            title:"Output Management"
-        }),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-    ],
+    ].concat(htmlWebpackPlugin),
     resolve:{
         extensions:[".tsx",".ts",".js"]
     },
@@ -41,6 +78,14 @@ module.exports = {
                 use:[
                     "style-loader",
                     "css-loader"
+                ]
+            },
+            {
+                test:/\.less$/,
+                use:[
+                    "style-loader",
+                    "css-loader",
+                    "less-loader"
                 ]
             },
             {
