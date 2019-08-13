@@ -10,3 +10,9 @@ examples of webpack
     - `px2rem`
     - static resource inlining `raw-laoder`
     - Mutil-page packaging `glob`
+
+* 2019-8-14
+
+    - tree shaking . 
+    - scope hoisting . 
+    - dynamic import module.

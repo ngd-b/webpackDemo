@@ -1,5 +1,5 @@
 import _ from "lodash";
-import printMe from "../print.js";
+import {printMe} from "../print.js";
 import "./index.css";
 import "./index.less";
 // import Icon from "./001.png";
