@@ -64,21 +64,6 @@ module.exports = {
     },
     plugins:[
         new CleanWebpackPlugin(),
-        // new HtmlWebpackPlugin({
-        //     title:"webpack demo",
-        //     template:path.join(__dirname,"src/index.html"),
-        //     filename:"index.html",
-        //     chunks:['app'],
-        //     inject:true,
-        //     minify:{
-        //         html5:true,
-        //         collapseWhitespace:true,
-        //         presserveLineBreaks:true,
-        //         ninifyCSS:true,
-        //         minifyJS:true,
-        //         removeComments:false
-        //     }
-        // }),
         new webpack.NamedModulesPlugin(),
         new MiniCssExtractPlugin({
             filename:"[name]_[contenthash:8].css"
