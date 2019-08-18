@@ -16,3 +16,7 @@ examples of webpack
     - tree shaking . 
     - scope hoisting . 
     - dynamic import module.
+
+* 2019-8-18
+
+    - `SSR` . tempalte / style 

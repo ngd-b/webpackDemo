@@ -1,0 +1,17 @@
+{
+    "result":true,
+    "list":[
+        {
+            "name":"admin",
+            "age":23
+        },
+        {
+            "name":"test",
+            "age":21
+        },
+        {
+            "name":"admin",
+            "age":23
+        }
+    ]
+}

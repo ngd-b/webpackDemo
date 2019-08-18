@@ -23,7 +23,7 @@ const setMPA=()=>{
             htmlWebpackPlugin.push(
                 new HtmlWebpackPlugin({
                     title:"webpack demo",
-                    template:path.join(__dirname,`src/index.html`),
+                    template:path.join(__dirname,`./server/index.html`),
                     filename:`${name}.html`,
                     chunks:["commons",name],
                     inject:true,

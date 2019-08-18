@@ -2,6 +2,7 @@ const path = require("path");
 const glob = require("glob");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const setMPA=()=>{
     const entry = {};
@@ -61,12 +62,14 @@ module.exports = {
     devtool:"inline-source-map",
     devServer:{
         contentBase:"./dist",
-        hot:true
+        hot:true,
+        stats:"errors-only",
     },
     plugins:[
         // new CleanWebpackPlugin(),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
+        new FriendlyErrorsWebpackPlugin()
     ].concat(htmlWebpackPlugin),
     resolve:{
         extensions:[".tsx",".ts",".js"]

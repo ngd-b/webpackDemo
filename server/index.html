@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    ${ require('raw-loader!../src/meta.html')}
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <script type="text/javascript">${ require('raw-loader!babel-loader!../node_modules/lib-flexible/flexible.js')}</script>
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app"><!-- HTML_PLACEHOLDER--></div>
+    <script type="text/javascript" src="https://11.url.cn/now/lib/16.2.0/react.min.js"></script>
+    <script type="text/javascript" src="https://11.url.cn/now/lib/16.2.0/react-dom.min.js"></script>
+
+    <!--INITIAL_DATA_PLACEHOLDER-->
 </body>
 </html>

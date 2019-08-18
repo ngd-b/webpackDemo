@@ -2,6 +2,7 @@
 
 const React  = require("react");
 // const ReactDOM = require('react-dom');
+const ps = require("./index.less");
 
 class Search extends React.Component{
     constructor(props){
@@ -23,7 +24,7 @@ class Search extends React.Component{
         });
     }
     render(){
-        return (<div className="">
+        return (<div className="search">
             <p>{this.state.value}</p>
             <input type="text" />
             <button onClick={this.handleClick}>确认</button>
