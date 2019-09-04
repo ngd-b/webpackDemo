@@ -1,6 +1,8 @@
 #### build webpack' config
 
-    - `webpack.base.js`
-    - `webpack.dev.js`
-    - `webpack.prod.js`
-    - `webpack.ssr.js`
+- `webpack.base.js`
+- `webpack.dev.js`
+- `webpack.prod.js`
+- `webpack.ssr.js`
+
+#### `ESLint` 规范脚本
