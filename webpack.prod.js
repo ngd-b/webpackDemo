@@ -73,7 +73,15 @@ module.exports = {
             assetNameRegExp:/\.css$/g,
             cssProcessor:require("cssnano")
         }),
-        new FriendlyErrorsWebpackPlugin()
+        new FriendlyErrorsWebpackPlugin(),
+        function(){
+            this.hooks.done.tap('done',(stats)=>{
+                if(stats.compilation.errors&&stats.compilation.errors.length&&process.argv.indexOf('-watch')==-1){
+                    console.log('build error __^^__');
+                    process.exit(3);
+                }
+            });
+        }
         // new HtmlWebpackExternalsPlugin({
         //     externals:[
         //         {

@@ -20,3 +20,9 @@ examples of webpack
 * 2019-8-18
 
     - `SSR` . tempalte / style 
+
+* 2019-9-4
+ 
+    - print errors' log building
+
+______________________________________________________________

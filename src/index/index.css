@@ -1,12 +1,12 @@
 @font-face{
-    font-family: "myFont";
+    font-family: myFont;
     src: url("../webfont.woff2") format("woff2"),url("../webfont.woff") format("woff");
     font-weight: 100;
     font-style: normal;
 }
 .hello{
     color:green;
-    font-family: "myFont";
+    font-family: myFont;
     background-image: url("../001.png");
     border-radius: 3px;
     font-size:24px;

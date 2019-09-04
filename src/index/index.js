@@ -15,7 +15,7 @@ function component() {
     p_el.innerHTML = _.join(['Hello', 'webpack','we will get hte more info and practice demo'], ' ');
     element.classList.add("hello");
     parent.appendChild(p_el);
-    btn.innerHTML="click me to check out the console ";
+    btn.innerHTML="click me to check out the console & will print something  ";
     btn.onclick=printMe;
     element.appendChild(btn);
     parent.appendChild(element);
