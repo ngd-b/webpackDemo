@@ -201,10 +201,10 @@ module.exports = {
     //         }
          ]
      },
-    //  resolveLoader:{
-    //      modules:[
-    //          "node_modules",
-    //          path.resolve(__dirname,"./src/plugins/loader")
-    //      ]
-    //  }
+     resolveLoader:{
+         modules:[
+             "node_modules",
+             path.resolve(__dirname,"./src/plugins/loader")
+         ]
+     }
 }

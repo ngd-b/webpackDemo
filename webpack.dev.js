@@ -131,7 +131,7 @@ module.exports = {
             {
                 test:/\.pj$/,
                 use:{
-                    loader:path.resolve(__dirname,"./src/plugins/loader"),
+                    loader:path.resolve(__dirname,"./src/plugins/loader/pj-loader.js"),
                     options:{
                         name:"hello"
                     }
