@@ -127,6 +127,15 @@ module.exports = {
                 test:/\.tsx?$/,
                 use:'ts-loader',
                 exclude:/node_modules/
+            },
+            {
+                test:/\.pj$/,
+                use:{
+                    loader:path.resolve(__dirname,"./src/plugins/loader"),
+                    options:{
+                        name:"hello"
+                    }
+                }
             }
     //         {
     //             test:/\.(csv|tsv)$/,
