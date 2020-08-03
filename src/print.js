@@ -3,6 +3,9 @@ export function printMe(){
     import("./index/text.js").then(text=>{
         console.log(text.default());
     })
+    import("./plugins/loader/index.pj").then(text=>{
+        console.log(text.default);
+    })
     console.log("I comes from print.js");
 }
 

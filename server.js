@@ -3,11 +3,11 @@ const webpack = require("webpack");
 const webpackDevMiddleware = require("webpack-dev-middleware");
 
 const app = new express();
-const config = require("./webpack.config.js");
+const config = require("./webpack.ssr.js");
 const compiler = webpack(config);
 
 app.use(webpackDevMiddleware(compiler,{
-    publicPath:config.output.publicPath
+    publicPath:"/server.html"
 }));
 
 app.listen(3000,function(){

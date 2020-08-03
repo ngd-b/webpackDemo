@@ -4,6 +4,7 @@ import "./index.css";
 import "./index.less";
 // import Icon from "./001.png";
 // import Data from "./data.xml"
+// import Text from "../plugins/loader/index.pj";
 
 function component() {
     var parent = document.createElement("div");

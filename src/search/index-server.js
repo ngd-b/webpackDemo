@@ -14,19 +14,19 @@ class Search extends React.Component{
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleChange(val){
-        
-    }
-    handleClick(val){
-        console.log(val);
+    handleChange(e){
+        console.log(e);
         this.setState({
-            value:val
+            value:e.target.value
         });
+    }
+    handleClick(e){
+        console.log(e);
     }
     render(){
         return (<div className="search">
             <p>{this.state.value}</p>
-            <input type="text" />
+            <input type="text" value={this.state.value} onChange = {this.handleChange} />
             <button onClick={this.handleClick}>确认</button>
         </div>)
     }

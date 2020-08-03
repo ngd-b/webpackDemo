@@ -178,6 +178,14 @@ module.exports = {
                 test:/\.tsx?$/,
                 use:'ts-loader',
                 exclude:/node_modules/
+            },{
+                test:/\.pj$/,
+                use:{
+                    loader:'pj-loader',
+                    options:{
+                        name:"hello"
+                    }
+                }
             }
     //         {
     //             test:/\.(csv|tsv)$/,
@@ -192,5 +200,11 @@ module.exports = {
     //             ]
     //         }
          ]
-     }
+     },
+    //  resolveLoader:{
+    //      modules:[
+    //          "node_modules",
+    //          path.resolve(__dirname,"./src/plugins/loader")
+    //      ]
+    //  }
 }
