@@ -41,6 +41,10 @@ webpack的核心工具，用于提供插件接口。`compiler`扩展与此。
 |AsyncSeriesBailHook|||
 |AsyncSeriesWaterfallHook|||
 
+```js
+let hook = 
+```
+
 #### `compiler`
 
 &emsp;&emsp;在webpack启动后，`compiler`对象包含webpack所有可操作的配置，包括：options、loader、plugin。插件在实例化调用时，接收`compiler`作为参数。
@@ -78,6 +82,43 @@ webpack的核心工具，用于提供插件接口。`compiler`扩展与此。
 
 `compilation`提供关键时间段的回调，可自定义处理数据。
 
+`compilation`扩展自`tapable`,在创建新的构建时可已出发一些事件钩子函数。
+
+|钩子名称|释义|钩子类型|
+|-----|--------|----------|
+|buildModule|在模块构建前触发|SyncHook|
+|rebuildModule|在模块重新构建前触发|SyncHook|
+|failedModule|在模块构建失败时触发|SyncHook|
+|succeedModule|在模块构建成功时触发|SyncHook|
+|finishModules|在所有模块构建完成时触发|SyncHook|
+|finishRebuildingModule|在某一个模块完成重新构建时触发|SyncHook|
+|seal|编译(`compilation`)停止接收新模块时触发|SyncHook|
+|unseal|编译(`compilation`)开始接收新模块时触发|SyncHook|
+|optimizeDependencies|依赖优化开始时触发|SyncBailHook|
+|optimize|优化阶段开始时触发|SyncHook|
+|optimizeChunks|优化`chunk`时触发|SyncBailHook|
+|afterOptimizeChunks|优化`chunk`完成时触发|SyncHook|
+|optimizeTree|异步优化依赖树|AsyncSeriesHook|
+|reviveModules|从`records`中恢复模块信息|SyncHook|
+|optimizeModuleOrder|按优先级优化模块排序|SyncHook|
+|optimizeChunkOrder|按优先级优化`chunk`排序|SyncHook|
+|beforeOptimizeChunkIds|优化某个`chunk id`前触发|SyncHook|
+|optimizeChunkIds|优化每个`chunk id`|SyncHook|
+|afterOptimizeChunkIds|每个`chunk id`优化完成之后|SyncHook|
+|recordModules|将模块信息存入`records`|SyncHook|
+|recordChunks|将`chunk`信息存入`records`|SyncHook|
+|beforeHash|在编译被哈希之前|SyncHook|
+|afterHash|在编译被哈希之后|SyncHook|
+|record|将`compilation`相关信息存入`records`之后|SyncHook|
+|beforeChunkAssets|在创建`chunk`资源之前|SyncHook|
+|additionalChunkAssets|为`chunk`附加附属资源|SyncHook|
+|additionalAssets|为编译`compilation`附加附属资源|AsyncSeriesHook|
+|optimizeChunkAssets|优化所有`chunk`资源|AsyncSeriesHook|
+|afterOptimizeChunkAssets|`chunk`优化完成|SyncHook|
+|optimizeAssets|优化存储在`compilation.assets`中的所有资源|AsyncSeriesHook|
+|afterOptimizeAssets|资源优化结束|SyncHook|
+|moduleAsset|一个模块的一个资源被加到编译中|SyncHook|
+|chunkAsset|一个`chunk`的一个资源被加到编译中|SyncHook|
 
 ### 实现一个plugin
 

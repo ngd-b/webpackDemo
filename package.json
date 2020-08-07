@@ -55,6 +55,7 @@
     "mini-css-extract-plugin": "^0.8.2",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "ora": "^4.0.5",
-    "style-loader": "^0.23.1"
+    "style-loader": "^0.23.1",
+    "tapable": "^1.1.3"
   }
 }
