@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
+// 自定义plugin
+const CustomPlugin = require("./src/plugins/plugin/index");
 const setMPA=()=>{
     const entry = {};
     const htmlWebpackPlugin = [];
@@ -69,7 +71,9 @@ module.exports = {
         // new CleanWebpackPlugin(),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new FriendlyErrorsWebpackPlugin()
+        new FriendlyErrorsWebpackPlugin(),
+        // 自定义plugin  应用
+        new CustomPlugin()
     ].concat(htmlWebpackPlugin),
     resolve:{
         extensions:[".tsx",".ts",".js"]

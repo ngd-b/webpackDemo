@@ -42,7 +42,18 @@ webpack的核心工具，用于提供插件接口。`compiler`扩展与此。
 |AsyncSeriesWaterfallHook|||
 
 ```js
-let hook = 
+const {
+    SyncHook,
+} = require("tapable");
+
+// 声明同步钩子函数
+// 指定参数，数组类型
+let hook = new SyncHook(["name"]);
+
+// 新增一个钩子事件
+hook.tap("AddUser",name=>console.log(`接收到的名称参数：${name}`))
+// 触发调用
+hook.call("admin");
 ```
 
 #### `compiler`
@@ -125,15 +136,47 @@ let hook =
 plugin在webpack启动后，执行一次。传入当前的配置对象`compiler`，
 
 ```js
+/**
+ * 自定义插件 
+ */
+
 function PJWebpacakPlugin(options){
     // 接收实例化时的参数 options
 }
 // 原型链上必须有apply函数
 PJWebpacakPlugin.prototype.apply = function(compiler){
-    // webpack编译运行时调用 apply 方法，
+    // webpack编译运行时调用一次 apply 方法，
     
+    compiler.plugin("entryOption",function(context,entry){
+        // entry 配置项完成后，可访问entry配置
+
+        console.log(entry);
+    });
+
+    compiler.plugin("afterPlugins",function(compiler){
+        // 在初始化插件plugin之后，
+        console.info(compiler.records);
+    })  
+
+    compiler.plugin("done",function(stats){
+        // webpack 编译完成之后出发
+        console.info(compiler);
+    });
 }
 
 // 模块导出
 module.exports = PJWebpacakPlugin;
+```
+
+导入使用，
+```js
+// 自定义插件应用
+const CustomPlugin = require("./src/plugins/plugin/index");
+
+module.exports = {
+    plugins:[
+        // ...
+        new CustomPlugin()
+    ]
+}
 ```

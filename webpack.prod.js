@@ -8,6 +8,9 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
+// 自定义插件应用
+const CustomPlugin = require("./src/plugins/plugin/index");
+
 const setMPA=()=>{
     const entry = {};
     const htmlWebpackPlugin = [];
@@ -81,7 +84,7 @@ module.exports = {
                     process.exit(3);
                 }
             });
-        }
+        },
         // new HtmlWebpackExternalsPlugin({
         //     externals:[
         //         {
@@ -91,6 +94,7 @@ module.exports = {
         //         }
         //     ]
         // })
+        new CustomPlugin()
     ].concat(htmlWebpackPlugin),
     stats:"errors-only",
     optimization:{
