@@ -31,7 +31,7 @@
     "html-webpack-externals-plugin": "^3.8.0",
     "less": "^3.12.2",
     "less-loader": "^5.0.0",
-    "loader-utils": "^2.0.0",
+    "loader-utils": "^2.0.3",
     "postcss-loader": "^3.0.0",
     "px2rem-loader": "^0.1.9",
     "raw-loader": "^0.5.1",
